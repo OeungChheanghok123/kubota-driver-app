@@ -100,7 +100,7 @@ class MainScreen extends StatelessWidget {
           MediaQuery.of(context).size.width - controller.sizeDrawerMenu.value,
       height: MediaQuery.of(context).size.height,
       child: Text(
-        '',
+        'Right',
         style: AppTextStyle.headline2,
       ),
     );
