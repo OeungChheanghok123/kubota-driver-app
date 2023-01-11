@@ -28,16 +28,9 @@ class MainScreen extends StatelessWidget {
         splashColor: noneColor,
         hoverColor: noneColor,
         highlightColor: noneColor,
-        onTap: () {
-          controller.isDrawMenu.value = !controller.isDrawMenu.value;
-          if (controller.isDrawMenu.value == false) {
-            controller.sizeDrawerMenu.value = 0.0;
-          } else {
-            controller.sizeDrawerMenu.value = 250.0;
-          }
-        },
+        onTap: () => controller.funcDrawerMenu(),
         child: Obx(
-          () => controller.isDrawMenu.value == true
+          () => controller.isDrawerMenu.value == true
               ? Row(
                   children: const [
                     SizedBox(width: defaultPaddin / 2),
@@ -54,7 +47,14 @@ class MainScreen extends StatelessWidget {
                 ),
         ),
       ),
-      title: Text('Driver App', style: AppTextStyle.headline2),
+      title: Row(
+        children: [
+          Text('Driver App', style: AppTextStyle.headline2),
+          const SizedBox(width: defaultPaddin * 5),
+          Text('Branch:', style: AppTextStyle.headline2),
+          Text(' Head Office', style: AppTextStyle.body),
+        ],
+      ),
     );
   }
 
@@ -62,7 +62,7 @@ class MainScreen extends StatelessWidget {
     return Row(
       children: [
         Obx(
-          () => controller.isDrawMenu.value == true
+          () => controller.isDrawerMenu.value == true
               ? _drawerMenu(context)
               : const SizedBox.shrink(),
         ),
@@ -78,6 +78,47 @@ class MainScreen extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: ListView(
         children: [
+          const SizedBox(height: defaultPaddin),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: defaultPaddin),
+            child: Row(
+              children: [
+                Container(
+                  height: 55,
+                  width: 55,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/w3-school.png'),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+                const SizedBox(width: defaultPaddin / 2),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Oeung Chheanghok',
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyle.headline2
+                            .copyWith(color: primaryColor),
+                      ),
+                      const SizedBox(height: defaultPaddin / 2),
+                      Text(
+                        'Application Manegement Officer',
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            AppTextStyle.body.copyWith(color: primaryGrayColor),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: defaultPaddin),
+          _buildUnderLine(width: controller.sizeDrawerMenu.value, height: 2),
           AppWidgets.listTile(
             icon: Icons.dashboard,
             title: 'Dashboard',
@@ -100,9 +141,17 @@ class MainScreen extends StatelessWidget {
           MediaQuery.of(context).size.width - controller.sizeDrawerMenu.value,
       height: MediaQuery.of(context).size.height,
       child: Text(
-        'Right',
+        '',
         style: AppTextStyle.headline2,
       ),
+    );
+  }
+
+  Widget _buildUnderLine({required double width, required double height}) {
+    return Container(
+      width: width,
+      height: height,
+      color: secondColor,
     );
   }
 }
