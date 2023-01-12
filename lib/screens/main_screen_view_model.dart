@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 class MainScreenViewModel extends GetxController {
   var sizeDrawerMenu = 250.0.obs;
   var isDrawerMenu = true.obs;
-
-  var panelPageValue = "".obs;
+  var panelPageValue = "Car Request".obs;
 
   void funcDrawerMenu() {
     isDrawerMenu.value = !isDrawerMenu.value;
