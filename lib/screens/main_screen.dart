@@ -1,4 +1,8 @@
 import 'package:driver_app/constants/constants.dart';
+import 'package:driver_app/screens/car_booking/car_booking_screen.dart';
+import 'package:driver_app/screens/car_request/car_request_screen.dart';
+import 'package:driver_app/screens/dashboard/dashboard.dart';
+import 'package:driver_app/screens/driver/driver.dart';
 import 'package:driver_app/screens/main_screen_view_model.dart';
 import 'package:driver_app/utility/app_widgets.dart';
 import 'package:driver_app/utility/text_style.dart';
@@ -122,12 +126,39 @@ class MainScreen extends StatelessWidget {
           AppWidgets.listTile(
             icon: Icons.dashboard,
             title: 'Dashboard',
-            onTap: () {},
+            onTap: () {
+              controller.panelPageValue.value = "Dashboard";
+            },
           ),
           AppWidgets.listTile(
             icon: Icons.face,
             title: 'Driver',
-            onTap: () {},
+            onTap: () {
+              controller.panelPageValue.value = "Driver";
+            },
+          ),
+          AppWidgets.listTile(
+            icon: Icons.local_mall,
+            title: 'Car Booking',
+            onTap: () {
+              controller.panelPageValue.value = "Car Booking";
+            },
+          ),
+          AppWidgets.listTile(
+            icon: Icons.local_shipping,
+            title: 'Car Request',
+            onTap: () {
+              controller.panelPageValue.value = "Car Request";
+            },
+          ),
+          AppWidgets.listTile(
+            icon: Icons.logout,
+            title: 'Log Out',
+            trailing: false,
+            iconData: Icons.power_settings_new,
+            onTap: () {
+              controller.panelPageValue.value = "Log Out";
+            },
           ),
         ],
       ),
@@ -140,10 +171,15 @@ class MainScreen extends StatelessWidget {
       width:
           MediaQuery.of(context).size.width - controller.sizeDrawerMenu.value,
       height: MediaQuery.of(context).size.height,
-      child: Text(
-        '',
-        style: AppTextStyle.headline2,
-      ),
+      child: controller.panelPageValue.value == "Dashboard"
+          ? const DashboardScreen()
+          : controller.panelPageValue.value == "Driver"
+              ? const DriverScreen()
+              : controller.panelPageValue.value == "Car Booking"
+                  ? const CarBookingScreen()
+                  : controller.panelPageValue.value == "Car Request"
+                      ? const CarRequestScreen()
+                      : const DashboardScreen(),
     );
   }
 

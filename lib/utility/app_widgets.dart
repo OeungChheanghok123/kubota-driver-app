@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 class AppWidgets {
   static Widget listTile({
+    bool trailing = true,
+    IconData? iconData,
     required IconData icon,
     required String title,
     required VoidCallback onTap,
@@ -12,12 +14,11 @@ class AppWidgets {
       leading: Icon(
         icon,
         color: primaryColor,
-        size: 16,
+        size: 24,
       ),
-      trailing: const Icon(
-        Icons.navigate_next_rounded,
-        color: primaryColor,
-      ),
+      trailing: trailing
+          ? const Icon(Icons.arrow_forward_ios, color: primaryColor)
+          : Icon(iconData, color: secondGraydColor),
       title: Text(
         title,
         style: AppTextStyle.headline2.copyWith(color: whiteColor),
