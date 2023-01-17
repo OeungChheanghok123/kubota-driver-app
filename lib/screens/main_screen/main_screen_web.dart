@@ -3,14 +3,14 @@ import 'package:driver_app/screens/car_booking/car_booking_screen.dart';
 import 'package:driver_app/screens/car_request/car_request_screen.dart';
 import 'package:driver_app/screens/dashboard/dashboard.dart';
 import 'package:driver_app/screens/driver/driver.dart';
-import 'package:driver_app/screens/main_screen_view_model.dart';
+import 'package:driver_app/screens/main_screen/main_screen_view_model.dart';
 import 'package:driver_app/utility/app_widgets.dart';
 import 'package:driver_app/utility/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+class MainScreenWeb extends StatelessWidget {
+  MainScreenWeb({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final controller = Get.put(MainScreenViewModel());
