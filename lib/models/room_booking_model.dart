@@ -40,4 +40,26 @@ class RoomBookingModel extends GetxController {
   final date = TextEditingController().obs;
   final sartTime = TextEditingController().obs;
   final endTime = TextEditingController().obs;
+  final participant = TextEditingController().obs;
+
+  List<dynamic> dataRomBooking = [
+    {
+      "No.": "1",
+      "Time": "10:00AM - 12:00PM",
+      "RoomName": "Pka Romdoul Room",
+      "Status": "Pending",
+    },
+    {
+      "No.": "2",
+      "Time": "13:00AM - 14:00PM",
+      "RoomName": "Sen Pidaor Room",
+      "Status": "Approved",
+    },
+    {
+      "No.": "3",
+      "Time": "14:00AM - 17:00PM",
+      "RoomName": "Pka Mliah Room",
+      "Status": "Approved",
+    },
+  ];
 }

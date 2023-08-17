@@ -22,7 +22,7 @@ class MobileAppTextStyle {
 
   static TextStyle title2 = TextStyle(
     color: blackColor,
-    fontSize: 13.sp,
+    fontSize: 14.sp,
   );
 
   static TextStyle body = const TextStyle(

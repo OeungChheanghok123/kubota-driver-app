@@ -131,7 +131,7 @@ class MobileLoginScreen extends StatelessWidget {
       child: Text(
         txt,
         style: TextStyle(
-          fontSize: 12.sp,
+          fontSize: 14.sp,
         ),
       ),
     );
