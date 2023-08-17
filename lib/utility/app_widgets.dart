@@ -1,6 +1,7 @@
 import 'package:driver_app/constants/constants.dart';
-import 'package:driver_app/utility/text_style.dart';
+import 'package:driver_app/utility/web_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AppWidgets {
   static Widget listTile({
@@ -14,14 +15,14 @@ class AppWidgets {
       leading: Icon(
         icon,
         color: primaryColor,
-        size: 24,
+        size: 20,
       ),
       trailing: trailing
           ? const Icon(Icons.arrow_forward_ios, color: primaryColor)
           : Icon(iconData, color: secondGraydColor),
       title: Text(
         title,
-        style: AppTextStyle.headline2.copyWith(color: whiteColor),
+        style: WebAppTextStyle.headline2.copyWith(color: whiteColor),
       ),
       onTap: onTap,
     );
@@ -40,11 +41,14 @@ class AppWidgets {
     return TextField(
       keyboardType: textInputType,
       controller: controller,
-      style: AppTextStyle.title1,
+      style: WebAppTextStyle.title1,
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyle.title1.copyWith(color: secondGraydColor),
+        hintStyle: WebAppTextStyle.title1.copyWith(
+          color: secondGraydColor,
+          fontSize: 14.sp,
+        ),
         suffixIcon: suffixIcon
             ? Container(
                 width: 100,
@@ -59,7 +63,8 @@ class AppWidgets {
                     const SizedBox(width: defaultPaddin / 2),
                     Text(
                       "$suffixText",
-                      style: AppTextStyle.title2.copyWith(color: primaryColor),
+                      style:
+                          WebAppTextStyle.title2.copyWith(color: primaryColor),
                     ),
                   ],
                 ),
@@ -73,12 +78,12 @@ class AppWidgets {
           vertical: defaultPaddin,
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: primaryColor, width: 2.0),
-          borderRadius: BorderRadius.all(Radius.circular(defaultPaddin)),
+          borderSide: BorderSide(color: secondGraydColor, width: 2.0),
+          borderRadius: BorderRadius.all(Radius.circular(defaultPaddin / 2)),
         ),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: primaryColor, width: 2.0),
-          borderRadius: BorderRadius.all(Radius.circular(defaultPaddin)),
+          borderSide: BorderSide(color: secondGraydColor, width: 2.0),
+          borderRadius: BorderRadius.all(Radius.circular(defaultPaddin / 2)),
         ),
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: whiteColor, width: 2.0),
@@ -89,13 +94,15 @@ class AppWidgets {
     );
   }
 
-  static Widget button(String text,
-      {required VoidCallback onTap,
-      Color backgroundColor = primaryColor,
-      IconData? leftIcon,
-      IconData? rightIcon,
-      Color color = whiteColor,
-      double borderRadius = 13}) {
+  static Widget button(
+    String text, {
+    required VoidCallback onTap,
+    Color backgroundColor = primaryColor,
+    IconData? leftIcon,
+    IconData? rightIcon,
+    Color color = whiteColor,
+    double borderRadius = 13,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -112,7 +119,7 @@ class AppWidgets {
               Icon(
                 leftIcon,
                 color: color,
-                size: 24,
+                size: 18.sp,
               ),
             if (leftIcon != null)
               const SizedBox(
@@ -120,7 +127,10 @@ class AppWidgets {
               ),
             Text(
               text,
-              style: AppTextStyle.headline1.copyWith(color: whiteColor),
+              style: WebAppTextStyle.headline1.copyWith(
+                color: whiteColor,
+                fontSize: 16.sp,
+              ),
             ),
             if (rightIcon != null)
               const SizedBox(
@@ -134,6 +144,36 @@ class AppWidgets {
           ],
         ),
       ),
+    );
+  }
+
+  static Widget appTitle(
+    BuildContext context, {
+    required String title,
+  }) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.all(defaultPaddin * 2),
+      color: blackColor.withOpacity(0.3),
+      child: Text(
+        title,
+        style: WebAppTextStyle.headline1.copyWith(
+          color: whiteColor,
+          fontSize: 12.sp,
+        ),
+      ),
+    );
+  }
+
+  static Widget underLine({
+    required double width,
+    required double height,
+    var color = secondColor,
+  }) {
+    return Container(
+      width: width,
+      height: height,
+      color: color,
     );
   }
 }

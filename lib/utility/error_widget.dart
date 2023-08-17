@@ -1,4 +1,4 @@
-import 'package:driver_app/utility/text_style.dart';
+import 'package:driver_app/utility/web_text_style.dart';
 import 'package:flutter/material.dart';
 
 class LoadingErrorWidget extends StatelessWidget {
@@ -9,7 +9,7 @@ class LoadingErrorWidget extends StatelessWidget {
     return Center(
       child: Text(
         'Error while loading data from server.',
-        style: AppTextStyle.headline2,
+        style: WebAppTextStyle.headline2,
       ),
     );
   }
