@@ -1,7 +1,11 @@
 import 'package:driver_app/constants/constants.dart';
+import 'package:driver_app/models/recent_car_booking_model.dart';
 import 'package:driver_app/utility/mobile_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+final controller = Get.put(RecentCarBookingViewModel());
 
 class SeeMoreCarBooking extends StatelessWidget {
   SeeMoreCarBooking({super.key});
@@ -72,7 +76,7 @@ class SeeMoreCarBooking extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildColumHeader(),
+              _paginatedDataTable(context),
             ],
           ),
         ),
@@ -80,97 +84,76 @@ class SeeMoreCarBooking extends StatelessWidget {
     );
   }
 
-  Widget _buildColumHeader() {
-    return Container(
-      decoration: BoxDecoration(
-        color: shapeColor,
-        border: Border.all(color: blackColor, width: 0.5),
-      ),
-      child: Row(
-        children: [
-          _buildColumnHeaderItem(
-            flex: 1,
-            txt: "No.",
-            rowData: "No",
-          ),
-          _buildColumnHeaderItem(
-            flex: 2,
-            txt: "Date",
-            rowData: "Date",
-          ),
-          _buildColumnHeaderItem(
-            flex: 2,
-            txt: "Location",
-            rowData: "Location",
-          ),
-          _buildColumnHeaderItem(
-            flex: 2,
-            txt: "By",
-            rowData: "BookBy",
-          ),
-          _buildColumnHeaderItem(
-            flex: 1,
-            txt: "Status",
-            rowData: "Status",
-          ),
-        ],
-      ),
+  Widget _paginatedDataTable(BuildContext context) {
+    return PaginatedDataTable(
+      source: _TableData(),
+      showCheckboxColumn: true,
+      horizontalMargin: 20,
+      columnSpacing: 18.sp,
+      rowsPerPage: controller.dataCarBooking.isNotEmpty
+          ? controller.dataCarBooking.length
+          : controller.dataCarBooking.length >= 5
+              ? 5
+              : 1,
+      columns: [
+        _dataColumn("No."),
+        _dataColumn("Date Book"),
+        _dataColumn("Location"),
+        _dataColumn("Book By"),
+        _dataColumn("Status"),
+      ],
     );
   }
 
-  Widget _buildColumnHeaderItem({
-    required int flex,
-    required String txt,
-    required String rowData,
-  }) {
-    return Expanded(
-      flex: flex,
-      child: Container(
-        padding: EdgeInsets.all(defaultPaddin * 2.sp),
-        decoration: BoxDecoration(
-          border: Border.all(color: blackColor, width: 0.5),
-        ),
-        child: Column(
-          children: [
-            Text(
-              txt,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis,
-                color: whiteColor,
-              ),
-            ),
-            ListView.builder(
-              itemCount: dataCarBooking.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return _buildColumnDataItem(
-                  flex: 0,
-                  txt: dataCarBooking[index][rowData],
-                );
-              },
-            )
-          ],
+  DataColumn _dataColumn(String txt) {
+    return DataColumn(
+      label: Text(
+        txt,
+        style: MobileAppTextStyle.headline1.copyWith(
+          fontSize: 14.sp,
         ),
       ),
     );
   }
+}
 
-  Widget _buildColumnDataItem({
-    required int flex,
-    required String txt,
-  }) {
-    return Text(
-      txt,
-      style: TextStyle(
-        fontSize: 16.sp,
-        color: blackColor,
+class _TableData extends DataTableSource {
+  final List<Map<String, dynamic>> _data = List.generate(
+    controller.dataCarBooking.length,
+    (index) => controller.dataCarBooking[index],
+  );
+
+  @override
+  bool get isRowCountApproximate => false;
+  @override
+  int get rowCount => _data.length;
+  @override
+  int get selectedRowCount => 0;
+  @override
+  DataRow getRow(int index) {
+    return DataRow(
+      cells: [
+        _dataCell(index, "No."),
+        _dataCell(index, "DateBooked"),
+        _dataCell(index, "Location"),
+        _dataCell(index, "BookBy"),
+        _dataCell(index, "Status"),
+      ],
+    );
+  }
+
+  DataCell _dataCell(
+    int index,
+    String txt,
+  ) {
+    return DataCell(
+      Text(
+        _data[index][txt].toString(),
         overflow: TextOverflow.ellipsis,
+        style: MobileAppTextStyle.title1.copyWith(
+          fontSize: 13.sp,
+        ),
       ),
-      textAlign: TextAlign.center,
     );
   }
 }
