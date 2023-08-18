@@ -44,7 +44,7 @@ class MobileLoginScreen extends StatelessWidget {
                 const Spacer(),
                 _buildButtonLogin(
                   'Login',
-                  onTap: () => controller.buttonLogin(),
+                  onTap: () => controller.buttonLogin(context),
                 ),
               ],
             ),

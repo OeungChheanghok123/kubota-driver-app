@@ -33,7 +33,6 @@ class GetStartScreen extends StatelessWidget {
           height: 72.5.sp,
         ),
         _buildShapeAppBar(Get.context!),
-        //_buildLogo(Get.context!),
       ],
     );
   }
@@ -116,30 +115,6 @@ class GetStartScreen extends StatelessWidget {
             bottomLeft: Radius.circular(defaultRadius * 20.sp),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildLogo(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      child: Container(
-        height: 50.sp,
-        width: 50.sp,
-        padding: EdgeInsets.all(defaultPaddin * 4.sp),
-        decoration: BoxDecoration(
-          color: whiteColor,
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Image.asset('assets/images/kbc-logo.png'),
       ),
     );
   }
