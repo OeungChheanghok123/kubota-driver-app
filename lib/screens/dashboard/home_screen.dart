@@ -3,6 +3,7 @@ import 'package:driver_app/models/recent_room_booking_model.dart';
 import 'package:driver_app/models/recent_car_booking_model.dart';
 import 'package:driver_app/screens/dashboard/recent_room_booking_data_table.dart';
 import 'package:driver_app/screens/dashboard/recent_car_booking_data_table.dart';
+import 'package:driver_app/screens/dashboard/see_more_car_booking.dart';
 import 'package:driver_app/utility/mobile_app_bar.dart';
 import 'package:driver_app/utility/mobile_text_style.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(SeeMoreCarBooking()),
                   child: Text(
                     "See more...",
                     style: MobileAppTextStyle.headline1.copyWith(
