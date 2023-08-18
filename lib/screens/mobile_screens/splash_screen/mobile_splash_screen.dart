@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:driver_app/constants/constants.dart';
-import 'package:driver_app/screens/mobile_screens/main_screen/main_screen_mobile.dart';
+import 'package:driver_app/screens/mobile_screens/main_screen/get_start_mobile_screen.dart';
 import 'package:flutter/material.dart';
 
 class MobileSplashScreen extends StatelessWidget {
