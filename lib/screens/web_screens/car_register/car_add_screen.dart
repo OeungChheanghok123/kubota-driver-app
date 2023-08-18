@@ -1,6 +1,6 @@
 import 'package:driver_app/constants/constants.dart';
 import 'package:driver_app/utility/app_widgets.dart';
-import 'package:driver_app/view_model/mobile_view_model/car__view_model.dart';
+import 'package:driver_app/view_model/mobile_view_model/car_view_model.dart';
 import 'package:driver_app/view_model/web_view_model/main_screen_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

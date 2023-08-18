@@ -1,7 +1,7 @@
 import 'package:driver_app/constants/constants.dart';
-import 'package:driver_app/screens/mobile_screens/main_screen/dashboard_mobile_screen.dart';
 import 'package:driver_app/utility/app_widgets.dart';
 import 'package:driver_app/utility/mobile_text_style.dart';
+import 'package:driver_app/view_model/mobile_view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -9,8 +9,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class MobileLoginScreen extends StatelessWidget {
   MobileLoginScreen({super.key});
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final controller = Get.put(LoginViewModel());
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +29,13 @@ class MobileLoginScreen extends StatelessWidget {
                 SizedBox(height: defaultPaddin * 5.sp),
                 _buildTextField(
                   context,
-                  controller: emailController,
+                  controller: controller.emailController.value,
                   txt: "Username",
                 ),
                 SizedBox(height: defaultPaddin * 3.sp),
                 _buildTextField(
                   context,
-                  controller: passwordController,
+                  controller: controller.passwordController.value,
                   txt: "Password",
                   obscureText: true,
                 ),
@@ -44,11 +43,7 @@ class MobileLoginScreen extends StatelessWidget {
                 const Spacer(),
                 _buildButtonLogin(
                   'Login',
-                  onTap: () {
-                    Get.offAll(
-                      MobileDashboardScreen(),
-                    );
-                  },
+                  onTap: () => controller.buttonLogin(),
                 ),
               ],
             ),
