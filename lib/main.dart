@@ -1,6 +1,6 @@
 import 'package:driver_app/constants/constants.dart';
-import 'package:driver_app/screens/main_screen/main_screen_web.dart';
-import 'package:driver_app/screens/splash_screen/mobile_splash_screen.dart';
+import 'package:driver_app/screens/web_screens/main_screen/main_screen_web.dart';
+import 'package:driver_app/screens/mobile_screens/splash_screen/mobile_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -12,7 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ResponsiveSizer(
