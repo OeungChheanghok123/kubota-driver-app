@@ -31,6 +31,7 @@ class MobileLoginScreen extends StatelessWidget {
                   context,
                   controller: controller.emailController.value,
                   txt: "Username",
+                  textInputType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: defaultPaddin * 3.sp),
                 _buildTextField(
@@ -89,11 +90,17 @@ class MobileLoginScreen extends StatelessWidget {
       child: Container(
         height: 40.sp,
         width: 40.sp,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: primaryGrayColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(100),
-          ),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
         child: Padding(
           padding: EdgeInsets.all(defaultPaddin * 5.sp),
@@ -106,16 +113,18 @@ class MobileLoginScreen extends StatelessWidget {
   Widget _buildTextField(
     BuildContext context, {
     bool obscureText = false,
+    TextInputType textInputType = TextInputType.text,
     required String txt,
     required TextEditingController controller,
   }) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width / 5.sp,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 5.sp),
       child: AppWidgets.textField(
         context,
         controller,
         hintText: txt,
         obscureText: obscureText,
+        textInputType: textInputType,
       ),
     );
   }
@@ -126,7 +135,7 @@ class MobileLoginScreen extends StatelessWidget {
       child: Text(
         txt,
         style: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 15.sp,
         ),
       ),
     );
@@ -137,13 +146,16 @@ class MobileLoginScreen extends StatelessWidget {
     required onTap,
   }) {
     return Container(
-      width: 50.sp,
-      margin: EdgeInsets.only(bottom: defaultPaddin * 10.sp),
+      margin: EdgeInsets.only(
+        bottom: defaultPaddin * 10.sp,
+        left: defaultPaddin * 5.sp,
+        right: defaultPaddin * 5.sp,
+      ),
       child: AppWidgets.button(
         txt,
         leftIcon: Icons.login,
         backgroundColor: shapeColor,
-        borderRadius: defaultPaddin * 5.sp,
+        borderRadius: defaultPaddin * 3.sp,
         onTap: onTap,
       ),
     );

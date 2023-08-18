@@ -17,7 +17,7 @@ class WebAppTextStyle {
 
   static TextStyle title1 = TextStyle(
     color: blackColor,
-    fontSize: 14.sp,
+    fontSize: 15.sp,
   );
 
   static TextStyle title2 = TextStyle(

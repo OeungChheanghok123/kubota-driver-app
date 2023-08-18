@@ -47,7 +47,7 @@ class AppWidgets {
         hintText: hintText,
         hintStyle: WebAppTextStyle.title1.copyWith(
           color: secondGraydColor,
-          fontSize: 14.sp,
+          fontSize: 15.sp,
         ),
         suffixIcon: suffixIcon
             ? Container(

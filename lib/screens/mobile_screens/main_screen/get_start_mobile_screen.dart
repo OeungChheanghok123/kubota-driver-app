@@ -33,7 +33,7 @@ class GetStartScreen extends StatelessWidget {
           height: 72.5.sp,
         ),
         _buildShapeAppBar(Get.context!),
-        _buildLogo(Get.context!),
+        //_buildLogo(Get.context!),
       ],
     );
   }
@@ -44,10 +44,23 @@ class GetStartScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 45.sp,
-            height: 45.sp,
-            child: Image.asset("assets/images/Logo.png"),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 6.sp),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 50.sp,
+                  height: 50.sp,
+                  child: Image.asset("assets/images/kbc-logo.png"),
+                ),
+                SizedBox(
+                  width: 45.sp,
+                  height: 45.sp,
+                  child: Image.asset("assets/images/Logo.png"),
+                ),
+              ],
+            ),
           ),
           Text(
             "Kubota Leasing (Cambodia) PLC.",
