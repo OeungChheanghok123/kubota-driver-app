@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class MainScreenMobile extends StatelessWidget {
-  MainScreenMobile({super.key});
+class GetStartScreen extends StatelessWidget {
+  GetStartScreen({super.key});
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,75 +16,45 @@ class MainScreenMobile extends StatelessWidget {
       key: _scaffoldKey,
       body: Stack(
         children: [
-          _buildShapeBarLogo(context),
-          _buildCompanyName,
+          _buildShapeBarLogo,
+          _buildLogoAndCompanyName,
           _buildButtonStart,
         ],
       ),
     );
   }
 
-  Widget _buildShapeBarLogo(BuildContext context) {
+  Widget get _buildShapeBarLogo {
     return Stack(
       alignment: Alignment.center,
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(Get.context!).size.width,
           height: 72.5.sp,
         ),
-        _buildShapeAppBar(context),
-        _buildLogo(context),
+        _buildShapeAppBar(Get.context!),
+        _buildLogo(Get.context!),
       ],
     );
   }
 
-  Widget _buildShapeAppBar(BuildContext context) {
-    return Positioned(
-      top: 0,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 65.sp,
-        decoration: BoxDecoration(
-          color: shapeColor,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(defaultRadius * 20.sp),
+  Widget get _buildLogoAndCompanyName {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 45.sp,
+            height: 45.sp,
+            child: Image.asset("assets/images/Logo.png"),
           ),
-        ),
+          Text(
+            "Kubota Leasing (Cambodia) PLC.",
+            style: MobileAppTextStyle.headline1,
+          ),
+        ],
       ),
-    );
-  }
-
-  Widget _buildLogo(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      child: Container(
-        height: 50.sp,
-        width: 50.sp,
-        decoration: const BoxDecoration(
-          color: primaryGrayColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(100),
-          ),
-          image: DecorationImage(
-            image: AssetImage('assets/images/Logo.png'),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget get _buildCompanyName {
-    return Column(
-      children: [
-        Expanded(
-          child: Center(
-            child: Text(
-              "Kubota Leasing (Cambodia) PLC.",
-              style: MobileAppTextStyle.headline1,
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -117,6 +87,46 @@ class MainScreenMobile extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildShapeAppBar(BuildContext context) {
+    return Positioned(
+      top: 0,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 65.sp,
+        decoration: BoxDecoration(
+          color: shapeColor,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(defaultRadius * 20.sp),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLogo(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      child: Container(
+        height: 50.sp,
+        width: 50.sp,
+        padding: EdgeInsets.all(defaultPaddin * 4.sp),
+        decoration: BoxDecoration(
+          color: whiteColor,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Image.asset('assets/images/kbc-logo.png'),
       ),
     );
   }

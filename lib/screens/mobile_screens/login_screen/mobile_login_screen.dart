@@ -1,5 +1,5 @@
 import 'package:driver_app/constants/constants.dart';
-import 'package:driver_app/screens/mobile_screens/main_screen/mobile_dashboard_screen.dart';
+import 'package:driver_app/screens/mobile_screens/main_screen/dashboard_mobile_screen.dart';
 import 'package:driver_app/utility/app_widgets.dart';
 import 'package:driver_app/utility/mobile_text_style.dart';
 import 'package:flutter/material.dart';
