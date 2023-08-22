@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "96394799062",
+    "project_id": "klc-control",
+    "storage_bucket": "klc-control.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96394799062:android:a4078b652413e3e9e16677",
+        "android_client_info": {
+          "package_name": "com.example.driver_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96394799062-brllk6f3kuacde0a65j9lmnvgibk8bhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIuqFsSvUMSGS4bKJmwRl-M_8mxlNcRQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96394799062-brllk6f3kuacde0a65j9lmnvgibk8bhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

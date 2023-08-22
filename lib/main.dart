@@ -1,12 +1,19 @@
 import 'package:driver_app/constants/constants.dart';
 import 'package:driver_app/screens/web_screens/main_screen/main_screen_web.dart';
 import 'package:driver_app/screens/mobile_screens/splash_screen/mobile_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
   runApp(const MyApp());
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
 }
 
 class MyApp extends StatelessWidget {

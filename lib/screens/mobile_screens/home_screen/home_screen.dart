@@ -1,6 +1,5 @@
 import 'package:driver_app/constants/constants.dart';
-import 'package:driver_app/screens/mobile_screens/home_screen/recent_room_booking_data_table.dart';
-import 'package:driver_app/screens/mobile_screens/home_screen/recent_car_booking_data_table.dart';
+import 'package:driver_app/utility/data_table_widget.dart';
 import 'package:driver_app/screens/mobile_screens/home_screen/see_more_car_booking.dart';
 import 'package:driver_app/utility/mobile_app_bar.dart';
 import 'package:driver_app/utility/mobile_text_style.dart';
@@ -13,8 +12,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final recentCarController = Get.put(RecentCarBookingViewModel());
-  final recentRoomController = Get.put(RecentRoomBookingViewModel());
+  final carController = Get.put(RecentCarBookingViewModel());
+  final roomController = Get.put(RecentRoomBookingViewModel());
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +32,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _bodyApp(BuildContext context) {
-    return Column(
+  Widget _bodyApp (BuildContext context) {
+    return Column (
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
@@ -76,70 +75,104 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 5.sp),
           padding: EdgeInsets.only(top: defaultPaddin * 5.sp),
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 5.sp),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Recently Car Booking",
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Recently Car Booking",
+                style: MobileAppTextStyle.headline1.copyWith(
+                  fontSize: 16.sp,
+                ),
+              ),
+              TextButton(
+                onPressed: () => Get.to(SeeMoreCarBooking()),
+                child: Text(
+                  "See more...",
                   style: MobileAppTextStyle.headline1.copyWith(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
+                    color: secondGraydColor,
                   ),
                 ),
-                TextButton(
-                  onPressed: () => Get.to(SeeMoreCarBooking()),
-                  child: Text(
-                    "See more...",
-                    style: MobileAppTextStyle.headline1.copyWith(
-                      fontSize: 14.sp,
-                      color: secondGraydColor,
-                    ),
-                  ),
-                ),
+              ),
+            ],
+          ),
+        ),
+        Obx(
+          () => Container(
+            margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 3.sp),
+            child: DataTableWidget(
+              con: carController.searchRecentCarBooking.value,
+              scourceData: carController.dataCarBooking,
+              hintText: 'Search by Location...',
+              fillterBy: 'Location',
+              columnHeader: const [
+                'N.',
+                'Date',
+                'Location',
+                'Book By',
+                'Status',
+              ],
+              rowData: const [
+                'No.',
+                'DateBooked',
+                'Location',
+                'BookBy',
+                'Status',
               ],
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 3.sp),
-          child: RecentCarDataTableWidget(
-            controller: recentCarController.searchRecentCarBooking.value,
+          margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 5.sp),
+          padding: EdgeInsets.only(top: defaultPaddin * 5.sp),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Recent Room Booking",
+                style: MobileAppTextStyle.headline1.copyWith(
+                  fontSize: 16.sp,
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "See more...",
+                  style: MobileAppTextStyle.headline1.copyWith(
+                    fontSize: 14.sp,
+                    color: secondGraydColor,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: defaultPaddin * 5.sp),
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 5.sp),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Recent Room Booking",
-                  style: MobileAppTextStyle.headline1.copyWith(
-                    fontSize: 16.sp,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "See more...",
-                    style: MobileAppTextStyle.headline1.copyWith(
-                      fontSize: 14.sp,
-                      color: secondGraydColor,
-                    ),
-                  ),
-                ),
+        Obx(
+          () => Container(
+            margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 3.sp),
+            child: DataTableWidget(
+              con: roomController.searchRecentRoomBooking.value,
+              scourceData: roomController.dataRomBooking,
+              hintText: 'Search by Room...',
+              fillterBy: 'RoomName',
+              columnHeader: const [
+                'N.',
+                'Date',
+                'Room',
+                'Book By',
+                'Status',
+              ],
+              rowData: const [
+                'no',
+                'dateBooked',
+                'roomName',
+                'bookBy',
+                'status',
               ],
             ),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: defaultPaddin * 3.sp),
-          child: RecentRoomDataTableWidget(
-            controller: recentRoomController.searchRecentRoomBooking.value,
           ),
         ),
         SizedBox(height: defaultPaddin * 5.sp),

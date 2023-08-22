@@ -6,22 +6,25 @@ class RecentRoomBookingViewModel extends GetxController {
 
   List<dynamic> dataRomBooking = [
     {
-      "No.": "1",
-      "DateBooked": "2023-07-01",
-      "RoomName": "Pka Romdoul",
-      "Status": "Closed",
+      "no": "1",
+      "dateBooked": "2023-07-01",
+      "roomName": "Pka Romdoul",
+      "bookBy": "Po Chanrith",
+      "status": "Closed",
     },
     {
-      "No.": "2",
-      "DateBooked": "2023-06-02",
-      "RoomName": "Sen Pidaor",
-      "Status": "Closed",
+      "no": "2",
+      "dateBooked": "2023-06-02",
+      "roomName": "Sen Pidaor",
+      "bookBy": "Oeung Chheanghok",
+      "status": "Closed",
     },
     {
-      "No.": "3",
-      "DateBooked": "2023-05-02",
-      "RoomName": "Pka Mliah",
-      "Status": "Closed",
+      "no": "3",
+      "dateBooked": "2023-05-02",
+      "roomName": "Pka Mliah",
+      "bookBy": "Heng Sreylin",
+      "status": "Closed",
     },
   ];
 }
